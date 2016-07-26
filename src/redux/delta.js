@@ -43,7 +43,7 @@ const handlers = {
   },
 
   [DELETE_SELECTION] (state, { payload }) {
-    const update = new Delta().retain(state.cursor).delete(payload.length)
+    const update = new Delta().retain(state.cursor).delete(state.selectionLength)
     return { ...state, delta: state.delta.compose(update) }
   },
 

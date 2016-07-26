@@ -5,13 +5,15 @@ import encodeJSX from './encoders/jsx'
 
 const store = configureStore()
 const initialDelta = new Delta([
-  { insert: 'This is a challenging test of my library!' }
+  { insert: 'This is a stupid challenging test of my library!' }
 ])
 
 import { setDelta, setCursor, setSelection, setSelectionAttribute,
          deleteSelection, insert, insertLinebreak } from './redux/delta'
 
 store.dispatch(setDelta(initialDelta))
+store.dispatch(setSelection({ cursor: 10, length: 7 }))
+store.dispatch(deleteSelection())
 store.dispatch(setSelection({ cursor: 10, length: 16 }))
 store.dispatch(setSelectionAttribute({ bold: true }))
 store.dispatch(setSelection({ cursor: 22, length: 4 }))
