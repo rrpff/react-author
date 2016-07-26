@@ -1,0 +1,17 @@
+{
+  "name": "text",
+  "version": "0.1.0",
+  "description": "",
+  "main": "structure.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Richard Foster <richard@rpf.me> (http://rpf.me)",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^3.5.2",
+    "redux-actions": "^0.10.1",
+    "rich-text": "^3.0.1"
+  }
+}
