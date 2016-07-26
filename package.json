@@ -4,6 +4,8 @@
   "description": "",
   "main": "structure.js",
   "scripts": {
+    "build": "browserify src/index.js -o example/index.js -t [ babelify --presets [ es2015 react stage-0 ] ]",
+    "watch": "watchify src/index.js -o example/index.js -t [ babelify --presets [ es2015 react stage-0 ] ]",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,10 +21,16 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
     "eslint": "^3.1.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.11.1",
     "eslint-plugin-jsx-a11y": "^2.0.1",
-    "eslint-plugin-react": "^5.2.2"
+    "eslint-plugin-react": "^5.2.2",
+    "watchify": "^3.7.0"
   }
 }
