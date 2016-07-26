@@ -1,7 +1,9 @@
+import React from 'react'
+import { Provider } from 'react-redux'
 import { Delta } from 'rich-text'
-import { renderToStaticMarkup } from 'react-dom/server'
+import { render } from 'react-dom'
 import configureStore from './store'
-import encodeJSX from './encoders/jsx'
+import Editor from './components/Editor/Editor'
 
 const store = configureStore()
 const initialDelta = new Delta([
@@ -24,5 +26,10 @@ store.dispatch(setCursor(-1))
 store.dispatch(insertLinebreak())
 store.dispatch(insert({ content: 'have a good day' }))
 
-const delta = store.getState().delta
-console.log(renderToStaticMarkup(encodeJSX(delta)))
+const app = (
+  <Provider store={store}>
+    <Editor />
+  </Provider>
+)
+
+render(app, document.getElementById('root'))
