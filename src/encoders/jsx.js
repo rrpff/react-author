@@ -8,7 +8,7 @@ const formatters = {
 }
 
 function paragraphs (operations) {
-  return operations.reduce(function (acc, operation) {
+  return operations.reduce((acc, operation) => {
     if (operation.attributes && operation.attributes.linebreak) {
       return [...acc, []]
     }
@@ -23,7 +23,7 @@ function paragraphs (operations) {
 
 function paragraph (operations) {
   const insertions = operations.filter(op => op.hasOwnProperty('insert'))
-  const formatted = insertions.map(function (operation) {
+  const formatted = insertions.map(operation => {
     const keys = Object.keys(operation.attributes || {})
     const wrappers = keys
       .map(key => formatters[key])
