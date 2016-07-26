@@ -1,5 +1,7 @@
 import { Delta } from 'rich-text'
+import { renderToStaticMarkup } from 'react-dom/server'
 import configureStore from './store'
+import encodeJSX from './encoders/jsx'
 
 const store = configureStore()
 const initialDelta = new Delta([
@@ -7,7 +9,7 @@ const initialDelta = new Delta([
 ])
 
 import { setDelta, setCursor, setSelection, setSelectionAttribute,
-         deleteSelection } from './redux/delta'
+         deleteSelection, insert, insertLinebreak } from './redux/delta'
 
 store.dispatch(setDelta(initialDelta))
 store.dispatch(setSelection({ cursor: 10, length: 16 }))
@@ -16,6 +18,9 @@ store.dispatch(setSelection({ cursor: 22, length: 4 }))
 store.dispatch(setSelectionAttribute({ italic: true }))
 store.dispatch(setSelection({ cursor: 33, length: 7 }))
 store.dispatch(setSelectionAttribute({ link: { href: '/demo' } }))
-store.dispatch(setCursor(0))
+store.dispatch(setCursor(-1))
+store.dispatch(insertLinebreak())
+store.dispatch(insert({ content: 'have a good day' }))
 
-console.log(JSON.stringify(store.getState().delta, null, 2))
+const delta = store.getState().delta
+console.log(renderToStaticMarkup(encodeJSX(delta)))

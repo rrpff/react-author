@@ -10,6 +10,9 @@
   "author": "Richard Foster <richard@rpf.me> (http://rpf.me)",
   "license": "ISC",
   "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-actions": "^0.10.1",
     "rich-text": "^3.0.1"
