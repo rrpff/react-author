@@ -14,19 +14,25 @@ export function splitDelta (operations, predicate) {
   return split
 }
 
+function createInsertWrapper (operation, factories) {
+  return function (content, factoryName) {
+    const factory = factories[factoryName]
+    const factoryOptions = operation.attributes[factoryName]
+    const hasOptions = Object(factoryOptions) === factoryOptions
+    const props = hasOptions ? factoryOptions : {}
+
+    return factory(props, content)
+  }
+}
+
 export function createInsertRenderer (factories) {
   return function (operation) {
     if (!operation.insert) return null
 
     const keys = Object.keys(operation.attributes || {})
-    const factoryNames = keys.filter(key => !!factories[key])
+    const foundFactories = keys.filter(key => factories.hasOwnProperty(key))
+    const wrapInsert = createInsertWrapper(operation, factories)
 
-    return factoryNames.reduce((element, name) => {
-      const factory = factories[name]
-      const factoryOptions = operation.attributes[name]
-      const props = Object(factoryOptions) === factoryOptions ? factoryOptions : {}
-
-      return factory(props, element)
-    }, operation.insert)
+    return foundFactories.reduce(wrapInsert, operation.insert)
   }
 }
