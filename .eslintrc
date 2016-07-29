@@ -21,11 +21,14 @@
     "semi": [2, "never"],
     "space-before-function-paren": [2, { "anonymous": "always", "named": "always" }],
     "no-empty": 0,
-    "func-names": 0
+    "func-names": 0,
+    "flow-vars/define-flow-type": 1,
+    "flow-vars/use-flow-type": 1
   },
   "plugins": [
     "react",
-    "import"
+    "import",
+    "flow-vars"
   ],
   "settings": {
     "import/parser": "babel-eslint",
